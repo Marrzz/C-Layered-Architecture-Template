@@ -2,13 +2,13 @@
 
 ### Database
 ~~~sh
-dotnet ef migrations add --project App.DAL.EF --startup-project WebApp --context AppDbContext Initial
+dotnet ef migrations add --project App.DAL.EntityFramework --startup-project WebApp --context AppDbContext Initial
 
-dotnet ef migrations remove --project App.DAL.EF --startup-project WebApp --context AppDbContext 
+dotnet ef migrations remove --project App.DAL.EntityFramework --startup-project WebApp --context AppDbContext 
 
-dotnet ef database update --project App.DAL.EF --startup-project WebApp
+dotnet ef database update --project App.DAL.EntityFramework --startup-project WebApp
 
-dotnet ef database drop --project App.DAL.EF --startup-project WebApp
+dotnet ef database drop --project App.DAL.EntityFramework --startup-project WebApp
 ~~~
 
 ### Controllers
@@ -18,22 +18,21 @@ NB! Change the slash ("/") in "-outDir Areas/Admin/Controllers" according to you
 #### MVC razor based
 ~~~sh
 cd WebApp
-dotnet aspnet-codegenerator controller -name MeetingsController       -actions -m  App.Domain.Meeting    -dc AppDbContext -outDir Areas/Admin/Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
-dotnet aspnet-codegenerator controller -name MeetingOptionsController       -actions -m  App.Domain.MeetingOption    -dc AppDbContext -outDir Areas/Admin/Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
-dotnet aspnet-codegenerator controller -name FooBarsController       -actions -m  App.Domain.FooBar    -dc AppDbContext -outDir Areas/Admin/Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+dotnet aspnet-codegenerator controller -name ExamplesController       -actions -m  App.Domain.Example    -dc AppDbContext -outDir Areas/Admin/Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+
 ~~~
 
 #### WebApi
 
 ~~~sh
 cd WebApp
-dotnet aspnet-codegenerator controller -name FooBarsController     -m App.Domain.FooBar     -actions -dc AppDbContext -outDir ApiControllers -api --useAsyncActions  -f
+dotnet aspnet-codegenerator controller -name ExamplesController     -m App.Domain.Example     -actions -dc AppDbContext -outDir ApiControllers -api --useAsyncActions  -f
 ~~~
 
 
 #### Identity pages
 ~~~sh
-dotnet aspnet-codegenerator identity -dc App.DAL.EF.AppDbContext -f
+dotnet aspnet-codegenerator identity -dc App.DAL.EntityFramework.AppDbContext -f
 ~~~
 
 ## DOCKER

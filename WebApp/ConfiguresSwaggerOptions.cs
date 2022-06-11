@@ -30,9 +30,11 @@ public class ConfigureSwaggerOptions: IConfigureOptions<SwaggerGenOptions>
         }
         
         // include xml comments (enable creation in csproj file)
-        var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-        var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-        options.IncludeXmlComments(xmlPath);
+        
+        
+        //var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+        //var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+        //options.IncludeXmlComments(xmlPath);
         
         // use FullName for schemaId - avoids conflicts between classes using the same name (which are in different namespaces)
         options.CustomSchemaIds(i => i.FullName);
