@@ -54,7 +54,7 @@ builder.Services
         {
             ValidIssuer = builder.Configuration["JWT:Issuer"],
             ValidAudience = builder.Configuration["JWT:Issuer"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"])),
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]!)),
             ClockSkew = TimeSpan.Zero // remove delay of token when expire
         };
     });
@@ -64,7 +64,7 @@ var supportedCultures = builder
     .Configuration
     .GetSection("SupportedCultures")
     .GetChildren()
-    .Select(x => new CultureInfo(x.Value))
+    .Select(x => new CultureInfo(x.Value!))
     .ToArray();
 
 builder.Services.Configure<RequestLocalizationOptions>(options =>
@@ -77,10 +77,10 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
     // if nothing is found, use this
     options.DefaultRequestCulture =
         new RequestCulture(
-            builder.Configuration["DefaultCulture"],
-            builder.Configuration["DefaultCulture"]);
+            builder.Configuration["DefaultCulture"]!,
+            builder.Configuration["DefaultCulture"]!);
 
-    options.SetDefaultCulture(builder.Configuration["DefaultCulture"]);
+    options.SetDefaultCulture(builder.Configuration["DefaultCulture"]!);
 
     options.RequestCultureProviders = new List<IRequestCultureProvider>
     {
